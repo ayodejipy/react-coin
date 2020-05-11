@@ -1,25 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Header from './components/common/Header';
+import List from './components/list/List';
+import notFound from "./components/notFound/notFound";
+import Detail from "./components/detail/Detail";
+
 
 function App() {
+  // const title = "React Coin";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div>
+        <Header />
+
+        <Switch>
+          <Route path="/" component={List} exact />
+          <Route path="/currency/:id" component={Detail} exact />
+          <Route component={notFound} />
+        </Switch>
+        
+      </div>
+    </BrowserRouter>
   );
 }
 
